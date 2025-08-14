@@ -9,7 +9,7 @@ def fetch_json(url):
         with urllib.request.urlopen(url) as response:
             return json.loads(response.read().decode())
     except Exception as e:
-        print(f"Error fetching {url}: {e}")
+        print(f"Error Fetching {url}: {e}")
         return None
 
 def extract_pubkey_from_scriptsig(scriptsig_hex):
@@ -35,14 +35,14 @@ def extract_pubkey_from_scriptsig(scriptsig_hex):
 def main():
     address = "1PWo3JeB9jrGwfHDNpdGK54CRas7fsVzXU"
     if not address.startswith('1'):
-        print("Invalid Mainnet P2PKH address (must start with '1'). Exiting.")
+        print("Invalid Testnet4 P2PKH Address (Must Start With '1'). Exiting.")
         sys.exit(1)
     
     api_base = "https://mempool.space/api"
     txs_url = f"{api_base}/address/{address}/txs"
     
     print(f"Monitoring Mainnet address: {address}")
-    print("Polling every 3 seconds for a spending transaction to extract compressed public key...")
+    print("Waiting For Outgoing Tx To Extract Public Key...")
     
     seen_txids = set()
     
@@ -63,12 +63,12 @@ def main():
                 if prevout.get('scriptpubkey_address') == address and prevout.get('scriptpubkey_type') == 'p2pkh':
                     pubkey = extract_pubkey_from_scriptsig(vin.get('scriptsig', ''))
                     if pubkey:
-                        print(f"Compressed public key found in tx {txid}: {pubkey}")
+                        print(f"Public Key Found: {pubkey}")
                         try:
                             subprocess.run(['chmod', '+x', 'kangaroo'], check=True)
-                            print("Set executable permissions for kangaroo")
+                            print("Set Executable Permissions For kangaroo")
                         except subprocess.CalledProcessError as e:
-                            print(f"Failed to set permissions: {e}")
+                            print(f"Failed To Set Permissions: {e}")
                             sys.exit(1)
                         command = ['./kangaroo', '-dp', '14', '-range', '71', '-start', '3fffffffffffffffff', '-pubkey', pubkey]
                         print(f"Executing: {' '.join(command)}")
