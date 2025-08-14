@@ -33,15 +33,15 @@ def extract_pubkey_from_scriptsig(scriptsig_hex):
         return None
 
 def main():
-    address = "mowHbjthhnFsAd1ugNHZcjFCW7QoZMSewc"
-    if not address.startswith(('m', 'n')):
-        print("Invalid Testnet4 P2PKH address (must start with 'm' or 'n'). Exiting.")
+    address = "1BY8GQbnueYofwSuFAT3USAhGjPrkxDdW9"
+    if not address.startswith('1'):
+        print("Invalid Mainnet P2PKH address (must start with '1'). Exiting.")
         sys.exit(1)
     
-    api_base = "https://mempool.space/testnet4/api"
+    api_base = "https://mempool.space/api"
     txs_url = f"{api_base}/address/{address}/txs"
     
-    print(f"Monitoring Testnet4 address: {address}")
+    print(f"Monitoring Mainnet address: {address}")
     print("Polling every 3 seconds for a spending transaction to extract compressed public key...")
     
     seen_txids = set()
@@ -70,7 +70,7 @@ def main():
                         except subprocess.CalledProcessError as e:
                             print(f"Failed to set permissions: {e}")
                             sys.exit(1)
-                        command = ['./kangaroo', '-dp', '14', '-range', '71', '-start', '3fffffffffffffffff', '-pubkey', pubkey]
+                        command = ['./kangaroo', '-dp', '14', '-range', '67', '-start', '3ffffffffffffffff', '-pubkey', pubkey]
                         print(f"Executing: {' '.join(command)}")
                         try:
                             subprocess.run(command, check=True)
