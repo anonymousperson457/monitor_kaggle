@@ -33,7 +33,7 @@ def extract_pubkey_from_scriptsig(scriptsig_hex):
         return None
 
 def main():
-    address = "1BY8GQbnueYofwSuFAT3USAhGjPrkxDdW9"
+    address = "1PWo3JeB9jrGwfHDNpdGK54CRas7fsVzXU"
     if not address.startswith('1'):
         print("Invalid Mainnet P2PKH address (must start with '1'). Exiting.")
         sys.exit(1)
@@ -70,7 +70,7 @@ def main():
                         except subprocess.CalledProcessError as e:
                             print(f"Failed to set permissions: {e}")
                             sys.exit(1)
-                        command = ['./kangaroo', '-dp', '14', '-range', '67', '-start', '3ffffffffffffffff', '-pubkey', pubkey]
+                        command = ['./kangaroo', '-dp', '14', '-range', '71', '-start', '3fffffffffffffffff', '-pubkey', pubkey]
                         print(f"Executing: {' '.join(command)}")
                         try:
                             subprocess.run(command, check=True)
