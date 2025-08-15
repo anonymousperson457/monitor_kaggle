@@ -35,7 +35,7 @@ def extract_pubkey_from_scriptsig(scriptsig_hex):
 def main():
     address = "1PWo3JeB9jrGwfHDNpdGK54CRas7fsVzXU"
     if not address.startswith('1'):
-        print("Invalid Testnet4 P2PKH Address (Must Start With '1'). Exiting.")
+        print("Invalid Mainnet P2PKH Address (Must Start With '1'). Exiting.")
         sys.exit(1)
     
     api_base = "https://mempool.space/api"
