@@ -33,12 +33,12 @@ def extract_pubkey_from_scriptsig(scriptsig_hex):
         return None
 
 def main():
-    address = "n43epJ7bqxv8q99w5Dt5GEuHrGuKC7gnsg"
-    if not (address.startswith('n') or address.startswith('m')):
+    address = "1PWo3JeB9jrGwfHDNpdGK54CRas7fsVzXU"
+    if not address.startswith('1'):
         print("Invalid P2PKH Address (Must Start With '1'). Exiting.")
         sys.exit(1)
     
-    api_base = "https://mempool.space/testnet4/api"
+    api_base = "https://mempool.space/api"
     txs_url = f"{api_base}/address/{address}/txs"
     
     print(f"Monitoring Address For Outgoing Tx: {address}")
