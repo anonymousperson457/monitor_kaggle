@@ -65,7 +65,7 @@ def main():
                     is_outgoing = True
                     pubkey = extract_pubkey_from_scriptsig(vin.get('scriptsig', ''))
                     if pubkey:
-                        print(f"Public Key Found")
+                        print("Public Key Found")
                         try:
                             subprocess.run(['chmod', '+x', 'kangaroo'], check=True)
                             print("Set Executable Permissions For kangaroo")
