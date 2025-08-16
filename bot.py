@@ -42,7 +42,7 @@ def main():
     txs_url = f"{api_base}/address/{address}/txs"
     
     print(f"Monitoring Address For Outgoing Tx: {address}")
-    print("Waiting For Outgoing Tx To Extract Public Key...")
+    print("Checking For Outgoing Tx To Extract Public Key...")
     
     seen_txids = set()
     
